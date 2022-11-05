@@ -1,8 +1,11 @@
 import { FlatList, SafeAreaView, SectionList, StyleSheet, Text, View } from 'react-native';
 import BusInfo from './src/BusInfo';
 import { COLOR } from './src/color';
+import { busStop, getSections } from './src/data';
 
 export default function App() {
+  const sections = getSections(busStop.buses);
+
   return (
     <SafeAreaView style={styles.container}>
       <BusInfo
@@ -14,20 +17,7 @@ export default function App() {
       />
 
       {/* <SectionList
-        sections={[
-          {
-            title: "간선버스",
-            data: [{ busNum: 146 }, { busNum: 360 }, { busNum: 740 }],
-          },
-          {
-            title: "지선버스",
-            data: [{ busNum: 3412 }],
-          },
-          {
-            title: "직행버스",
-            data: [{ busNum: 1100 }, { busNum: 1700 }],
-          },
-        ]}
+        sections={sections}
         renderSectionHeader={({ section: { title } }) => <Text>{title}</Text>}
         renderItem={({ item }) => <Text>{item.busNum}</Text>}
       /> */}
