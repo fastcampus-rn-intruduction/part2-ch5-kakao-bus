@@ -13,7 +13,7 @@ export default ({
   processedNextBusInfos,
 }) => {
   return (
-    <View style={{ flexDirection: "row", height: 75, backgroundColor: "#FFF" }}>
+    <View style={{ flexDirection: "row", height: 75, backgroundColor: COLOR.WHITE }}>
       <View style={{ 
         flex: 0.85,
         flexDirection: "row", 
