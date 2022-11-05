@@ -18,7 +18,7 @@ export default function App() {
   const [now, setNow] = useState(dayjs());
   const [refreshing, setRefreshing] = useState(false);
 
-  const { isDark, NEWCOLOR,  } = useTheme();
+  const { isDark, NEWCOLOR, toggleIsDark } = useTheme();
 
   const onPressBusStopBookmark = () => {
     // TODO
