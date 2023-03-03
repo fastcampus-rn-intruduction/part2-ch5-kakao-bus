@@ -1,7 +1,28 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { COLOR } from './color';
 
-export const busStop = {
+interface NextBusInfo {
+  arrivalTime: Dayjs;
+  numOfRemainedStops: number;
+  numOfPassengers: number;
+}
+
+interface Bus {
+  type: "B" | "G" | "R";
+  num: number;
+  directionDescription: string;
+  isBookmarked: boolean;
+  nextBusInfos: NextBusInfo[];
+}
+interface BusStop {
+  id: number;  
+  name:string;
+  directionDescription:string;
+  isBookmarked: Boolean;
+  buses: Bus[];
+}
+
+export const busStop: BusStop = {
   id: 23284,
   name: "강남역12번출구",
   directionDescription: "강남역.강남역사거리",
@@ -150,7 +171,6 @@ export const busStop = {
           arrivalTime: dayjs().add(24, "minute").add(50, "second"),
           numOfRemainedStops: 12,
           numOfPassengers: 2,
-          numOfPassengers: 7,
         },
       ],
     },
@@ -196,10 +216,14 @@ export const busStop = {
   ]
 };
 
-export const getSections = (buses) => {
-  const bBuses = []; // data
-  const gBuses = []; // data 
-  const rBuses = []; // data
+interface Section {
+  title: string;
+  data: Bus[];
+}
+export const getSections = (buses: Bus[]): Section[] => {
+  const bBuses: Bus[] = []; // data
+  const gBuses: Bus[] = []; // data 
+  const rBuses: Bus[] = []; // data
 
   for (const bus of buses) {
     if (bus.type === "B") bBuses.push(bus);
@@ -207,7 +231,7 @@ export const getSections = (buses) => {
     else if (bus.type === "R") rBuses.push(bus);
   }
 
-  const sections = [];
+  const sections: Section[] = [];
   if (bBuses.length > 0) {
     sections.push({
       title: "간선버스",
